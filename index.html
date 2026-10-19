@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10131b">
+<meta name="description" content="GressnayConvertormp3 — аудиоинструменты, эквалайзер и Remix Studio.">
+<title>GressnayConvertormp3 — Audio Studio</title>
+<style>
+:root{--bg:#0b0e14;--panel:#141a24;--panel2:#1a2230;--line:#2b3547;--text:#f4f7fb;--muted:#9ba9bd;--cyan:#15d8f4;--purple:#a65cff;--red:#ff4765;--green:#53e0a1}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#203146 0,transparent 55%),var(--bg);color:var(--text);font:16px/1.5 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;padding:22px 0}.brand{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:850;letter-spacing:-.8px}.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#071018;font-weight:1000;font-size:22px}.brand span span{color:var(--cyan)}.nav{display:flex;gap:24px;align-items:center;color:var(--muted);font-size:14px}.nav a:hover{color:var(--cyan)}.pill{border:1px solid var(--line);border-radius:999px;padding:9px 14px;background:#151b25;color:var(--text)}.hero{text-align:center;padding:58px 0 34px}.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid #284555;background:#10252d;color:#a5f4ff;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:700;letter-spacing:.5px}.dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 12px var(--green)}h1{font-size:clamp(38px,6vw,68px);line-height:1.04;letter-spacing:-2.8px;margin:22px 0 16px}h1 em{font-style:normal;background:linear-gradient(90deg,var(--cyan),#b78aff);background-clip:text;color:transparent}.sub{max-width:700px;margin:0 auto;color:var(--muted);font-size:clamp(15px,2vw,18px)}.converter{max-width:850px;margin:34px auto 0;padding:12px;border:1px solid #313b4d;background:rgba(20,26,36,.92);border-radius:20px;box-shadow:0 20px 70px #0005}.urlrow{display:flex;gap:10px;align-items:center}.urlbox{flex:1;display:flex;gap:10px;align-items:center;min-width:0;background:#0e131c;border:1px solid var(--line);border-radius:12px;padding:0 15px}.urlbox svg{flex-shrink:0;color:var(--muted)}.urlbox input{width:100%;min-width:0;background:transparent;border:0;outline:0;color:var(--text);padding:17px 0}.urlbox input::placeholder{color:#718096}.select{background:#202d40;color:#dce9f8;border:1px solid #35455e;border-radius:11px;padding:14px 12px;outline:0}.btn{border:0;border-radius:11px;padding:14px 20px;font-weight:800;color:#061018;background:linear-gradient(120deg,var(--cyan),#76f0d6);transition:transform .15s,filter .15s}.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}.btn.secondary{background:#222d3e;color:var(--text);border:1px solid #3b4960}.btn.purple{background:linear-gradient(120deg,#a65cff,#7d8dff);color:white}.notice{display:none;text-align:left;margin:12px 2px 2px;border-radius:10px;padding:12px 14px;background:#2a2023;border:1px solid #65404a;color:#ffb4c0;font-size:13px}.helper{color:var(--muted);font-size:12px;margin:13px 0 2px}.quick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:17px}.tag{border:1px solid var(--line);color:#b8c5d8;border-radius:8px;padding:5px 10px;font-size:12px}.section{padding:58px 0}.section-head{text-align:center;margin-bottom:26px}.section-head h2{font-size:clamp(28px,4vw,40px);letter-spacing:-1.2px;margin:0 0 8px}.section-head p{color:var(--muted);margin:0}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.feature{background:linear-gradient(145deg,#171e2a,#111720);border:1px solid var(--line);border-radius:16px;padding:22px}.feature-icon{display:grid;place-items:center;width:43px;height:43px;border-radius:12px;background:#142d39;color:var(--cyan);font-size:21px;margin-bottom:14px}.feature h3{margin:0 0 6px;font-size:17px}.feature p{margin:0;color:var(--muted);font-size:14px}.studio-shell{border:1px solid #303b4e;border-radius:20px;overflow:hidden;background:#111720;box-shadow:0 20px 70px #0003}.studio-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 22px;border-bottom:1px solid var(--line);background:#161e2a}.studio-head h2{margin:0;font-size:22px}.studio-head p{margin:3px 0 0;color:var(--muted);font-size:13px}.studio-body{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel{min-width:0;background:#0c1119;border:1px solid #273245;border-radius:14px;padding:17px}.panel.full{grid-column:1/-1}.panel h3{font-size:15px;margin:0 0 14px;display:flex;align-items:center;gap:8px}.upload{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.file-label{display:inline-flex;align-items:center;gap:8px;background:#1b2939;border:1px dashed #456078;border-radius:10px;padding:12px 14px;color:#dceafa;font-size:13px;font-weight:700;cursor:pointer}.file-label input{display:none}.filename{color:var(--muted);font-size:12px;overflow-wrap:anywhere}audio{width:100%;margin-top:16px;height:42px}#status{color:var(--muted);font-size:12px;margin:10px 0 0;min-height:18px}.eq-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:8px}.eq-band{display:flex;flex-direction:column;align-items:center;gap:9px;min-width:0}.eq-band input{writing-mode:vertical-lr;direction:rtl;appearance:slider-vertical;height:112px;width:20px;accent-color:var(--cyan);cursor:pointer}.eq-band output{color:var(--cyan);font-size:10px}.eq-band span{font-size:10px;color:var(--muted)}.control{margin:17px 0}.control:first-of-type{margin-top:0}.control-head{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:#c7d4e6;margin-bottom:9px}.control output{color:var(--cyan);font-variant-numeric:tabular-nums}.control input[type=range]{width:100%;accent-color:var(--cyan)}.effect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.effect-btn{text-align:left;padding:13px;border:1px solid #35445a;border-radius:10px;background:#182231;color:var(--text)}.effect-btn strong{display:block}.effect-btn small{display:block;color:var(--muted);margin-top:4px}.effect-btn.active{border-color:var(--cyan);background:#10303a}.action-row{display:flex;gap:10px;flex-wrap:wrap}.action-row .btn{flex:1}.smallprint{color:var(--muted);font-size:12px;margin-top:12px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{border:1px solid var(--line);border-radius:14px;padding:18px;background:#131a24}.step b{color:var(--cyan);font-size:13px}.step h3{margin:7px 0}.step p{color:var(--muted);font-size:13px;margin:0}footer{border-top:1px solid #242c3a;padding:26px 0;color:var(--muted);font-size:12px}.footrow{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.mobile-menu{display:none}
+@media(max-width:760px){.nav{gap:12px}.nav a:not(.pill){display:none}.hero{padding-top:38px}.urlrow{flex-wrap:wrap}.urlbox{flex-basis:100%}.select{flex:1}.urlrow>.btn{flex:1}.feature-grid{grid-template-columns:1fr}.studio-body{grid-template-columns:1fr;padding:10px}.panel.full{grid-column:auto}.studio-head{align-items:flex-start}.studio-head .btn{padding:10px 12px}.eq-grid{grid-template-columns:repeat(5,minmax(0,1fr));row-gap:20px}.eq-band input{height:92px}.steps{grid-template-columns:1fr}.section{padding:42px 0}}
+
+/* Ad placements: placeholders until an ad provider is approved and connected. */
+.ad-wrap{padding:10px 0 20px}
+.ad-slot{position:relative;min-height:94px;display:flex;align-items:center;justify-content:center;gap:12px;flex-direction:column;text-align:center;padding:18px 20px;border:1px dashed #39465a;border-radius:14px;background:linear-gradient(135deg,rgba(20,26,36,.72),rgba(12,17,25,.92));color:var(--muted);overflow:hidden}
+.ad-slot--top{min-height:90px;max-width:970px;margin:0 auto}
+.ad-slot--middle{min-height:120px}
+.ad-label{position:absolute;top:7px;left:10px;font-size:9px;line-height:1.3;letter-spacing:1.2px;text-transform:uppercase;color:#78869b}
+.ad-slot strong{color:#d1dbea;font-size:14px;font-weight:650}
+.ad-slot small{font-size:11px;color:#77869b}
+.ad-modal[hidden]{display:none!important}
+.ad-modal{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:18px}
+.ad-modal-backdrop{position:absolute;inset:0;background:rgba(3,6,12,.82);backdrop-filter:blur(8px)}
+.ad-modal-card{position:relative;width:min(100%,470px);padding:24px;border:1px solid #374459;border-radius:20px;background:#131a25;box-shadow:0 30px 100px #000a;animation:adRise .18s ease-out}
+.ad-modal-card h2{font-size:23px;line-height:1.2;margin:0 0 9px;letter-spacing:-.5px}
+.ad-modal-card p{color:#a9b7ca;font-size:14px;margin:0 0 16px}
+.ad-modal-slot{min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;position:relative;border:1px dashed #485770;border-radius:14px;padding:30px 18px 18px;background:#0b1018}
+.ad-modal-slot strong{font-size:14px;color:#d7e1f1}
+.ad-modal-slot small{font-size:11px;color:#8290a5;max-width:300px}
+.ad-modal-kicker{font-size:10px;letter-spacing:1.1px;color:#7b8aa0;text-transform:uppercase}
+.ad-timer{min-height:23px;margin:12px 0 14px!important;text-align:center;font-size:12px!important}
+.ad-modal-actions{display:flex;gap:9px;flex-wrap:wrap}
+.ad-modal-actions .btn{flex:1;min-width:150px;padding:12px 14px;font-size:13px}
+.ad-modal-actions .btn[hidden]{display:none!important}
+@keyframes adRise{from{opacity:0;transform:translateY(8px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:560px){.ad-slot{min-height:90px;padding:23px 12px 14px}.ad-modal-card{padding:19px}.ad-modal-card h2{font-size:21px}.ad-modal-slot{min-height:130px}}
+@media(prefers-reduced-motion:reduce){.ad-modal-card{animation:none}}
+
+</style>
+</head>
+<body>
+<header class="wrap topbar">
+  <a class="brand" href="#"><span class="logo">G</span><span>gressnay<span>Convertor</span>mp3</span></a>
+  <nav class="nav"><a href="#features">Возможности</a><a href="#studio">Remix Studio</a><a href="#how">Как пользоваться</a><a class="pill" href="#studio">Открыть студию ↗</a></nav>
+</header>
+<div class="wrap ad-wrap" aria-label="Реклама">
+  <div class="ad-slot ad-slot--top" data-ad-slot="top-banner">
+    <span class="ad-label">Реклама</span>
+    <strong>Рекламный баннер</strong>
+    <small>Здесь появится объявление после подключения рекламной сети</small>
+  </div>
+</div>
+<main>
+<section class="wrap hero">
+  <div class="eyebrow"><span class="dot"></span> AUDIO TOOLS · REMIX STUDIO</div>
+  <h1>Твой звук.<br><em>Твои правила.</em></h1>
+  <p class="sub">Работай со своими аудиофайлами, усиливай бас, настраивай частоты и создавай собственное звучание в браузере.</p>
+  <div class="converter">
+    <form id="urlForm">
+      <div class="urlrow">
+        <label class="urlbox" aria-label="Ссылка на медиа">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <input id="mediaUrl" type="url" placeholder="Вставь ссылку на видео или аудио…" autocomplete="url">
+        </label>
+        <select class="select" id="format" aria-label="Формат"><option value="original">Исходный файл</option><option value="mp3">MP3 (позже)</option><option value="wav">WAV (позже)</option><option value="mp4">MP4 (позже)</option></select>
+        <button class="btn" type="submit">Загрузить</button>
+      </div>
+      <div id="urlNotice" class="notice" role="status"></div>
+    </form>
+    <p class="helper">Для страниц SoundCloud используй официальную кнопку Download, если автор её включил. После скачивания загрузи файл в Remix Studio — там можно экспортировать обработанный результат в MP3/WAV. Прямые HTTPS-ссылки на разрешённые медиафайлы поддерживаются отдельно.</p>
+  </div>
+  <div class="quick"><span class="tag">🎚️ 10-band EQ</span><span class="tag">🔊 Bass Boost</span><span class="tag">🌌 Reverb</span><span class="tag">💾 WAV Export</span></div>
+</section>
+<section class="wrap ad-wrap" aria-label="Реклама">
+  <div class="ad-slot ad-slot--middle" data-ad-slot="between-converter-and-studio">
+    <span class="ad-label">Реклама</span>
+    <strong>Рекламный блок</strong>
+    <small>Место для объявления между конвертером и Remix Studio</small>
+  </div>
+</section>
+<section class="wrap section" id="features">
+  <div class="section-head"><h2>Инструменты для твоего звука</h2><p>Просто загрузи аудиофайл и настрой его под себя.</p></div>
+  <div class="feature-grid">
+    <article class="feature"><div class="feature-icon">🎚️</div><h3>Эквалайзер</h3><p>10 частотных полос для тонкой настройки низких, средних и высоких частот.</p></article>
+    <article class="feature"><div class="feature-icon">🔊</div><h3>Бас и громкость</h3><p>Усиливай низкие частоты, регулируй высокие и подбирай уровень громкости.</p></article>
+    <article class="feature"><div class="feature-icon">✨</div><h3>Эффекты и экспорт</h3><p>Добавляй реверберацию и эхо, меняй скорость и сохраняй результат в WAV.</p></article>
+  </div>
+</section>
+<section class="wrap section" id="studio">
+  <div class="section-head"><h2>Remix Studio</h2><p>Локальная обработка аудио прямо в браузере — файл не отправляется на сервер.</p></div>
+  <div class="studio-shell">
+    <div class="studio-head"><div><h2>🎛️ Remix Studio</h2><p>Загрузи трек и начни экспериментировать</p></div><button class="btn secondary" id="resetAllTop" type="button">Сбросить ↺</button></div>
+    <div class="studio-body">
+      <section class="panel full">
+        <h3>🎵 Твой трек</h3>
+        <div class="upload"><label class="file-label">＋ Выбрать аудиофайл<input id="audioFile" type="file" accept="audio/*"></label><span class="filename" id="fileName">Файл не выбран</span></div>
+        <audio id="player" controls preload="metadata"></audio>
+        <p id="status" role="status">Выбери MP3, WAV, OGG или другой поддерживаемый браузером аудиофайл.</p>
+      </section>
+      <section class="panel full">
+        <h3>🎚️ 10-полосный эквалайзер</h3><div class="eq-grid" id="eqGrid"></div>
+        <div class="action-row" style="margin-top:16px"><button class="btn secondary" id="flatEq" type="button">Обнулить EQ</button></div>
+      </section>
+      <section class="panel">
+        <h3>🔊 Тон и громкость</h3>
+        <div class="control"><div class="control-head"><label for="bass">Bass Boost</label><output id="bassOut">0 dB</output></div><input id="bass" type="range" min="0" max="18" value="0" step="1"></div>
+        <div class="control"><div class="control-head"><label for="treble">Treble</label><output id="trebleOut">0 dB</output></div><input id="treble" type="range" min="-12" max="12" value="0" step="1"></div>
+        <div class="control"><div class="control-head"><label for="volume">Громкость</label><output id="volumeOut">100%</output></div><input id="volume" type="range" min="0" max="100" value="100"></div>
+        <div class="control"><div class="control-head"><label for="speed">Скорость / Pitch</label><output id="speedOut">1.00×</output></div><input id="speed" type="range" min="0.5" max="1.5" value="1" step=".01"></div>
+      </section>
+      <section class="panel">
+        <h3>✨ Эффекты</h3>
+        <div class="effect-grid">
+          <button class="effect-btn" data-effect="reverb" type="button"><strong>🌌 Reverb</strong><small>Пространственное звучание</small></button>
+          <button class="effect-btn" data-effect="echo" type="button"><strong>🔁 Echo / Delay</strong><small>Повторение звука</small></button>
+        </div>
+        <div class="control" style="margin-top:20px"><div class="control-head"><label for="reverbMix">Интенсивность Reverb</label><output id="reverbOut">20%</output></div><input id="reverbMix" type="range" min="0" max="100" value="20"></div>
+        <div class="control"><div class="control-head"><label for="echoMix">Интенсивность Echo</label><output id="echoOut">20%</output></div><input id="echoMix" type="range" min="0" max="100" value="20"></div>
+      </section>
+      <section class="panel full">
+        <div class="action-row"><button class="btn secondary" id="resetAll" type="button">↺ Сбросить настройки</button><button class="btn" id="exportMp3" type="button">⬇ Экспорт MP3</button><button class="btn secondary" id="exportWav" type="button">⬇ Экспорт WAV</button></div>
+        <p class="smallprint">Экспорт MP3 и WAV включает EQ, бас, высокие частоты, громкость, скорость и включённые Reverb/Echo. MP3 использует кодировщик LAME, загружаемый из CDN. Большие файлы могут обрабатываться дольше. Изменение скорости также меняет высоту звучания.</p>
+      </section>
+    </div>
+  </div>
+</section>
+<section class="wrap section" id="how">
+  <div class="section-head"><h2>Как пользоваться</h2><p>Три простых шага.</p></div>
+  <div class="steps"><article class="step"><b>ШАГ 01</b><h3>Загрузи трек</h3><p>Выбери аудиофайл на своём устройстве.</p></article><article class="step"><b>ШАГ 02</b><h3>Настрой звук</h3><p>Используй эквалайзер, бас, скорость и эффекты во время прослушивания.</p></article><article class="step"><b>ШАГ 03</b><h3>Экспортируй</h3><p>Сохрани обработанную версию в формате WAV.</p></article></div>
+</section>
+</main>
+<footer><div class="wrap footrow"><span>© <span id="year"></span> GressnayConvertormp3</span><span>Используй только материалы, на которые у тебя есть права или разрешение.</span></div></footer>
+
+<div class="ad-modal" id="adModal" hidden aria-hidden="true">
+  <div class="ad-modal-backdrop"></div>
+  <section class="ad-modal-card" role="dialog" aria-modal="true" aria-labelledby="adModalTitle" aria-describedby="adModalDescription">
+    <span class="ad-modal-kicker">Поддержка проекта</span>
+    <h2 id="adModalTitle">Поддержи GressnayConvertormp3</h2>
+    <p id="adModalDescription">Посмотрите эту рекламу для поддержки — это всего 15 секунд. Просмотр необязателен: можно сразу продолжить загрузку.</p>
+    <div class="ad-modal-slot" data-ad-slot="download-modal">
+      <span class="ad-label">Рекламное место</span>
+      <strong>Здесь будет рекламное объявление</strong>
+      <small>Реальная реклама появится после подключения и одобрения рекламной сети. Сейчас это демонстрационный блок.</small>
+    </div>
+    <p class="ad-timer" id="adTimerText" aria-live="polite">Можно пропустить и продолжить сразу.</p>
+    <div class="ad-modal-actions">
+      <button class="btn secondary" id="adSkip" type="button">Пропустить и продолжить</button>
+      <button class="btn" id="adWatch" type="button">Посмотреть 15 секунд</button>
+      <button class="btn" id="adContinue" type="button" hidden>Продолжить загрузку</button>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+const player = $('#player'), status = $('#status');
+const frequencies = [31,62,125,250,500,1000,2000,4000,8000,16000];
+let ctx, source, bassFilter, trebleFilter, eqFilters=[], master, convolver, reverbWet, reverbDry, delay, feedback, echoWet, echoDry;
+let currentFile=null, objectUrl=null, effects={reverb:false,echo:false};
+$('#year').textContent=new Date().getFullYear();
+
+let pendingAfterAd = null;
+let adCountdownInterval = null;
+
+function closeAdModal(runPending) {
+  const modal = $('#adModal');
+  modal.hidden = true;
+  modal.setAttribute('aria-hidden', 'true');
+  if (adCountdownInterval) {
+    clearInterval(adCountdownInterval);
+    adCountdownInterval = null;
+  }
+  $('#adWatch').hidden = false;
+  $('#adContinue').hidden = true;
+  $('#adSkip').disabled = false;
+  $('#adTimerText').textContent = 'Можно пропустить и продолжить сразу.';
+  const next = pendingAfterAd;
+  pendingAfterAd = null;
+  if (runPending && typeof next === 'function') next();
+}
+
+function openAdModal(nextAction) {
+  pendingAfterAd = nextAction;
+  const modal = $('#adModal');
+  modal.hidden = false;
+  modal.setAttribute('aria-hidden', 'false');
+  $('#adWatch').hidden = false;
+  $('#adContinue').hidden = true;
+  $('#adSkip').disabled = false;
+  $('#adTimerText').textContent = 'Можно пропустить и продолжить сразу.';
+  $('#adSkip').focus();
+}
+
+$('#adSkip').addEventListener('click', () => closeAdModal(true));
+$('#adContinue').addEventListener('click', () => closeAdModal(true));
+$('#adWatch').addEventListener('click', () => {
+  if (adCountdownInterval) clearInterval(adCountdownInterval);
+  let remaining = 15;
+  $('#adWatch').hidden = true;
+  $('#adTimerText').textContent = 'Демонстрационный просмотр: ' + remaining + ' секунд.';
+  adCountdownInterval = setInterval(() => {
+    remaining -= 1;
+    if (remaining > 0) {
+      $('#adTimerText').textContent = 'Осталось ' + remaining + ' секунд. Можно пропустить в любой момент.';
+      return;
+    }
+    clearInterval(adCountdownInterval);
+    adCountdownInterval = null;
+    $('#adTimerText').textContent = 'Готово. Теперь можно продолжить загрузку.';
+    $('#adContinue').hidden = false;
+    $('#adContinue').focus();
+  }, 1000);
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !$('#adModal').hidden) closeAdModal(true);
+});
+
+$('#urlForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const url = $('#mediaUrl').value.trim();
+  const notice = $('#urlNotice');
+  const format = $('#format').value;
+  const button = e.submitter || $('#urlForm button[type="submit"]');
+  notice.style.display = 'block';
+  if (!url) { notice.textContent = 'Сначала вставь ссылку.'; return; }
+  let parsed;
+  try { parsed = new URL(url); }
+  catch { notice.textContent = 'Похоже, ссылка введена некорректно.'; return; }
+  if (parsed.protocol !== 'https:') {
+    notice.textContent = 'Для загрузки сервер принимает только HTTPS-ссылки.';
+    return;
+  }
+  openAdModal(() => processUrl(url, format, button));
+});
+
+async function processUrl(url, format, button) {
+  const notice = $('#urlNotice');
+  const parsed = new URL(url);
+  const host = parsed.hostname.toLowerCase().replace(/^www\./, '');
+  notice.style.display = 'block';
+  if (host === 'soundcloud.com' || host === 'm.soundcloud.com' || host === 'on.soundcloud.com') {
+    const safeHref = parsed.href.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    notice.innerHTML = 'SoundCloud не разрешает через обычный API скачивать произвольные треки. Открой трек и используй официальную кнопку <b>Download file</b>, если автор её включил. Затем загрузи полученный файл в Remix Studio ниже и нажми «Экспорт MP3».<br><br><a class="btn secondary" id="openSoundCloudTrack" target="_blank" rel="noopener noreferrer" href="' + safeHref + '">Открыть трек в SoundCloud ↗</a>';
+    $('#studio').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+  if (format !== 'original') {
+    notice.textContent = 'Сервер пока скачивает только исходный файл без конвертации. Для MP3/WAV используй Remix Studio ниже: загрузи аудиофайл и нажми экспорт.';
+    $('#studio').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+  const oldText = button.textContent;
+  button.disabled = true;
+  button.textContent = 'Проверяем и скачиваем…';
+  notice.textContent = 'Обращаемся к серверу. Поддерживаются только прямые ссылки на медиафайлы с разрешённых доменов.';
+  try {
+    const response = await fetch('/api/download', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url, format: 'original' })
+    });
+    const type = (response.headers.get('content-type') || '').toLowerCase();
+    if (!response.ok) {
+      let message = 'Сервер не смог скачать файл.';
+      if (type.includes('application/json')) {
+        const data = await response.json();
+        if (data.error) message = data.error;
+      } else {
+        const txt = await response.text();
+        if (txt) message = txt.slice(0, 240);
+      }
+      throw new Error(message);
+    }
+    const blob = await response.blob();
+    if (!blob.size) throw new Error('Источник вернул пустой файл.');
+    const disposition = response.headers.get('content-disposition') || '';
+    const match = disposition.match(/filename="?([^";]+)"?/i);
+    const filename = (match && match[1]) || 'gressnay-media-file';
+    const objectURL = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = objectURL;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(objectURL), 60000);
+    notice.textContent = 'Готово! Загрузка исходного файла началась. Если браузер спросит разрешение, подтверди скачивание.';
+  } catch (err) {
+    notice.textContent = 'Не удалось скачать: ' + (err.message || 'неизвестная ошибка') + ' Если это ссылка на страницу YouTube/TikTok/SoundCloud, она не поддерживается; нужна прямая ссылка на файл с разрешённого домена.';
+  } finally {
+    button.disabled = false;
+    button.textContent = oldText;
+  }
+}
+function impulse(c,seconds=2.2,decay=2.4){const b=c.createBuffer(2,Math.floor(c.sampleRate*seconds),c.sampleRate);for(let ch=0;ch<2;ch++){const d=b.getChannelData(ch);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,decay)}return b}
+function build(){
+ if(ctx)return; const AC=window.AudioContext||window.webkitAudioContext;ctx=new AC();
+ source=ctx.createMediaElementSource(player);
+ bassFilter=ctx.createBiquadFilter();bassFilter.type='lowshelf';bassFilter.frequency.value=150;
+ trebleFilter=ctx.createBiquadFilter();trebleFilter.type='highshelf';trebleFilter.frequency.value=5000;
+ eqFilters=frequencies.map(f=>{const n=ctx.createBiquadFilter();n.type='peaking';n.frequency.value=f;n.Q.value=1.1;return n});
+ convolver=ctx.createConvolver();convolver.buffer=impulse(ctx);
+ reverbWet=ctx.createGain();reverbWet.gain.value=0;reverbDry=ctx.createGain();
+ delay=ctx.createDelay(2);delay.delayTime.value=.32;feedback=ctx.createGain();feedback.gain.value=0;echoWet=ctx.createGain();echoWet.gain.value=0;echoDry=ctx.createGain();
+ master=ctx.createGain();
+ source.connect(bassFilter);let last=bassFilter;last.connect(trebleFilter);last=trebleFilter;
+ eqFilters.forEach(f=>{last.connect(f);last=f});
+ last.connect(reverbDry);last.connect(convolver);convolver.connect(reverbWet);
+ reverbDry.connect(echoDry);reverbDry.connect(delay);reverbWet.connect(echoDry);reverbWet.connect(delay);
+ delay.connect(feedback);feedback.connect(delay);delay.connect(echoWet);
+ echoDry.connect(master);echoWet.connect(master);master.connect(ctx.destination);
+}
+async function ready(){build();if(ctx.state==='suspended')await ctx.resume()}
+function ramp(param,value){if(!ctx)return;param.setTargetAtTime(value,ctx.currentTime,.02)}
+const grid=$('#eqGrid');
+frequencies.forEach((f,i)=>{const lab=document.createElement('label');lab.className='eq-band';const input=document.createElement('input');input.type='range';input.min=-12;input.max=12;input.step=1;input.value=0;input.setAttribute('aria-label',`${f} Hz`);const out=document.createElement('output');out.textContent='0 dB';const span=document.createElement('span');span.textContent=f>=1000?(f/1000)+'k':String(f);input.addEventListener('input',async()=>{await ready();ramp(eqFilters[i].gain,+input.value);out.textContent=input.value+' dB'});lab.append(input,out,span);grid.append(lab)});
+$('#audioFile').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;if(!file.type.startsWith('audio/')){status.textContent='Выбери аудиофайл.';return}currentFile=file;if(objectUrl)URL.revokeObjectURL(objectUrl);objectUrl=URL.createObjectURL(file);player.src=objectUrl;player.load();$('#fileName').textContent=file.name;try{await ready();status.textContent='Трек загружен. Включи воспроизведение и настрой звук.'}catch(err){status.textContent='Не удалось запустить аудио: '+err.message}});
+player.addEventListener('play',()=>ready().catch(e=>status.textContent=e.message));
+function bindRange(id,out,fn,format){$('#'+id).addEventListener('input',async e=>{await ready();const v=+e.target.value;fn(v);$('#'+out).textContent=format(v)})}
+bindRange('bass','bassOut',v=>ramp(bassFilter.gain,v),v=>v+' dB');
+bindRange('treble','trebleOut',v=>ramp(trebleFilter.gain,v),v=>v+' dB');
+bindRange('volume','volumeOut',v=>ramp(master.gain,v/100),v=>v+'%');
+$('#speed').addEventListener('input',e=>{player.playbackRate=+e.target.value;$('#speedOut').textContent=(+e.target.value).toFixed(2)+'×'});
+function mix(which){if(!ctx)return;if(which==='reverb'){const v=+$('#reverbMix').value/100;ramp(reverbWet.gain,effects.reverb?v:0);ramp(reverbDry.gain,1)}else{const v=+$('#echoMix').value/100;ramp(echoWet.gain,effects.echo?v:0);ramp(feedback.gain,effects.echo?Math.min(.62,v*.62):0);ramp(echoDry.gain,1)}}
+document.querySelectorAll('[data-effect]').forEach(b=>b.addEventListener('click',async()=>{await ready();const k=b.dataset.effect;effects[k]=!effects[k];b.classList.toggle('active',effects[k]);mix(k);status.textContent=k+(effects[k]?' включён.':' выключен.')}));
+[['reverbMix','reverbOut','reverb'],['echoMix','echoOut','echo']].forEach(([id,out,k])=>$('#'+id).addEventListener('input',async e=>{await ready();$('#'+out).textContent=e.target.value+'%';mix(k)}));
+function reset(){['bass','treble'].forEach(id=>$('#'+id).value=0);$('#volume').value=100;$('#speed').value=1;$('#reverbMix').value=20;$('#echoMix').value=20;$('#eqGrid').querySelectorAll('input').forEach((el,i)=>{el.value=0;el.parentElement.querySelector('output').textContent='0 dB'});$('#bassOut').textContent='0 dB';$('#trebleOut').textContent='0 dB';$('#volumeOut').textContent='100%';$('#speedOut').textContent='1.00×';$('#reverbOut').textContent='20%';$('#echoOut').textContent='20%';player.playbackRate=1;effects={reverb:false,echo:false};document.querySelectorAll('[data-effect]').forEach(b=>b.classList.remove('active'));if(ctx){bassFilter.gain.value=0;trebleFilter.gain.value=0;eqFilters.forEach(f=>f.gain.value=0);master.gain.value=1;mix('reverb');mix('echo')}status.textContent='Настройки сброшены.'}
+$('#resetAll').addEventListener('click',reset);$('#resetAllTop').addEventListener('click',reset);$('#flatEq').addEventListener('click',()=>{$('#eqGrid').querySelectorAll('input').forEach((el,i)=>{el.value=0;el.parentElement.querySelector('output').textContent='0 dB';if(ctx)eqFilters[i].gain.value=0})});
+function wavBlob(buffer){const channels=buffer.numberOfChannels,frames=buffer.length,rate=buffer.sampleRate,bps=2,size=frames*channels*bps,ab=new ArrayBuffer(44+size),v=new DataView(ab);const str=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};str(0,'RIFF');v.setUint32(4,36+size,true);str(8,'WAVE');str(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,channels,true);v.setUint32(24,rate,true);v.setUint32(28,rate*channels*bps,true);v.setUint16(32,channels*bps,true);v.setUint16(34,16,true);str(36,'data');v.setUint32(40,size,true);let o=44;for(let i=0;i<frames;i++)for(let c=0;c<channels;c++){let s=Math.max(-1,Math.min(1,buffer.getChannelData(c)[i]));v.setInt16(o,s<0?s*32768:s*32767,true);o+=2}return new Blob([ab],{type:'audio/wav'})}
+$('#exportMp3').addEventListener('click',async()=>{
+ if(!currentFile){status.textContent='Сначала выбери аудиофайл.';return}
+ const btn=$('#exportMp3');btn.disabled=true;btn.textContent='Загрузка кодировщика…';
+ try{
+  if(!window.lamejs){
+   await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js';s.onload=resolve;s.onerror=()=>reject(new Error('Не удалось загрузить MP3-кодировщик. Проверь интернет-соединение.'));document.head.appendChild(s)});
+  }
+  const AC=window.AudioContext||window.webkitAudioContext,decoder=new AC();
+  const decoded=await decoder.decodeAudioData(await currentFile.arrayBuffer());
+  const speed=+$('#speed').value,tail=(effects.reverb?2.2:0)+(effects.echo?2.5:0);
+  const length=Math.ceil(decoded.length/speed+tail*decoded.sampleRate);
+  const off=new OfflineAudioContext(decoded.numberOfChannels,length,decoded.sampleRate);
+  const src=off.createBufferSource();src.buffer=decoded;src.playbackRate.value=speed;let last=src;
+  const bass=off.createBiquadFilter();bass.type='lowshelf';bass.frequency.value=150;bass.gain.value=+$('#bass').value;last.connect(bass);last=bass;
+  const treble=off.createBiquadFilter();treble.type='highshelf';treble.frequency.value=5000;treble.gain.value=+$('#treble').value;last.connect(treble);last=treble;
+  frequencies.forEach((f,i)=>{const n=off.createBiquadFilter();n.type='peaking';n.frequency.value=f;n.Q.value=1.1;n.gain.value=+grid.querySelectorAll('input')[i].value;last.connect(n);last=n});
+  const vol=off.createGain();vol.gain.value=+$('#volume').value/100;
+  if(effects.reverb){const conv=off.createConvolver();conv.buffer=impulse(off);const wet=off.createGain();wet.gain.value=+$('#reverbMix').value/100;const dry=off.createGain();dry.gain.value=1;last.connect(dry);last.connect(conv);conv.connect(wet);dry.connect(vol);wet.connect(vol)}else last.connect(vol);
+  if(effects.echo){const d=off.createDelay(2);d.delayTime.value=.32;const fb=off.createGain();fb.gain.value=Math.min(.62,+$('#echoMix').value/100*.62);const wet=off.createGain();wet.gain.value=+$('#echoMix').value/100;last.connect(d);d.connect(fb);fb.connect(d);d.connect(wet);wet.connect(vol)}
+  vol.connect(off.destination);src.start(0);status.textContent='Обработка аудио перед кодированием MP3…';
+  const rendered=await off.startRendering();const ch0=rendered.getChannelData(0),ch1=rendered.numberOfChannels>1?rendered.getChannelData(1):ch0;
+  const encoder=new lamejs.Mp3Encoder(rendered.numberOfChannels,rendered.sampleRate,192),chunks=[],block=1152;
+  for(let i=0;i<rendered.length;i+=block){
+   const left=new Int16Array(Math.min(block,rendered.length-i)),right=new Int16Array(left.length);
+   for(let j=0;j<left.length;j++){left[j]=Math.max(-32768,Math.min(32767,ch0[i+j]*32767));right[j]=Math.max(-32768,Math.min(32767,ch1[i+j]*32767))}
+   const data=rendered.numberOfChannels>1?encoder.encodeBuffer(left,right):encoder.encodeBuffer(left);
+   if(data.length)chunks.push(new Uint8Array(data));
+  }
+  const end=encoder.flush();if(end.length)chunks.push(new Uint8Array(end));
+  const blob=new Blob(chunks,{type:'audio/mpeg'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=(currentFile.name.replace(/\.[^.]+$/,'')||'gressnay-remix')+'-remix.mp3';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+  status.textContent='Готово! MP3-файл сохранён.';await decoder.close();
+ }catch(err){status.textContent='Ошибка MP3-экспорта: '+err.message}
+ finally{btn.disabled=false;btn.textContent='⬇ Экспорт MP3'}
+});
+$('#exportWav').addEventListener('click',async()=>{if(!currentFile){status.textContent='Сначала выбери аудиофайл.';return}const btn=$('#exportWav');btn.disabled=true;btn.textContent='Обработка…';try{const AC=window.AudioContext||window.webkitAudioContext,decoder=new AC();const decoded=await decoder.decodeAudioData(await currentFile.arrayBuffer());const speed=+$('#speed').value,tail=(effects.reverb?2.2:0)+(effects.echo?2.5:0);const length=Math.ceil(decoded.length/speed+tail*decoded.sampleRate);const off=new OfflineAudioContext(decoded.numberOfChannels,length,decoded.sampleRate);const src=off.createBufferSource();src.buffer=decoded;src.playbackRate.value=speed;let last=src;
+const bass=off.createBiquadFilter();bass.type='lowshelf';bass.frequency.value=150;bass.gain.value=+$('#bass').value;last.connect(bass);last=bass;
+const treble=off.createBiquadFilter();treble.type='highshelf';treble.frequency.value=5000;treble.gain.value=+$('#treble').value;last.connect(treble);last=treble;
+frequencies.forEach((f,i)=>{const n=off.createBiquadFilter();n.type='peaking';n.frequency.value=f;n.Q.value=1.1;n.gain.value=+grid.querySelectorAll('input')[i].value;last.connect(n);last=n});
+const vol=off.createGain();vol.gain.value=+$('#volume').value/100;
+if(effects.reverb){const conv=off.createConvolver();conv.buffer=impulse(off);const wet=off.createGain();wet.gain.value=+$('#reverbMix').value/100;const dry=off.createGain();dry.gain.value=1;last.connect(dry);last.connect(conv);conv.connect(wet);dry.connect(vol);wet.connect(vol)}else last.connect(vol);
+if(effects.echo){const d=off.createDelay(2);d.delayTime.value=.32;const fb=off.createGain();fb.gain.value=Math.min(.62,+$('#echoMix').value/100*.62);const wet=off.createGain();wet.gain.value=+$('#echoMix').value/100;last.connect(d);d.connect(fb);fb.connect(d);d.connect(wet);wet.connect(vol)}
+vol.connect(off.destination);src.start(0);status.textContent='Рендеринг аудио…';const rendered=await off.startRendering();const blob=wavBlob(rendered),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=(currentFile.name.replace(/\.[^.]+$/,'')||'gressnay-remix')+'-remix.wav';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);status.textContent='Готово! WAV-файл сохранён.';await decoder.close()}catch(err){status.textContent='Ошибка экспорта: '+err.message}finally{btn.disabled=false;btn.textContent='⬇ Экспорт WAV'}});
+})();
+</script>
+</body>
+</html>
